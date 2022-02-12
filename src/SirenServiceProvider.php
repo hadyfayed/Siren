@@ -4,7 +4,7 @@ namespace HadyFayed\Siren;
 
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use HadyFayed\Siren\Commands\SirenCommand;
+use HadyFayed\Siren\Commands\SirenInstallCommand;
 
 class SirenServiceProvider extends PackageServiceProvider
 {
@@ -17,9 +17,9 @@ class SirenServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('siren')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_siren_table')
-            ->hasCommand(SirenCommand::class);
+//            ->hasConfigFile()
+//            ->hasViews()
+//            ->hasMigration('create_siren_table')
+            ->hasCommand(SirenInstallCommand::class);
     }
 }
