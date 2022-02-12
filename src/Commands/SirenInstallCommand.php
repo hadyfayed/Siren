@@ -42,8 +42,8 @@ class SirenInstallCommand extends Command
 
         $this->maybeGenerateAppKey();
         $this->call('livewire:publish');
-        $this->call('jetstream:install livewire');
-        $this->call('turbo:install --jet');
+        $this->call('jetstream:install', ['stack' => 'livewire']);
+        $this->call('turbo:install', ['--option' => 'jet']);
     }
 
     private function maybeGenerateAppKey(): void
