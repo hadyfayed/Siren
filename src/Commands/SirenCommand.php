@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace HadyFayed\Siren\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class SirenCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'siren';
 
     public $description = 'My command';
 
