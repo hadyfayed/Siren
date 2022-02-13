@@ -41,9 +41,34 @@ class SirenInstallCommand extends Command
         $this->info("--------------------\n");
 
         $this->maybeGenerateAppKey();
-        $this->call('livewire:publish');
-        $this->call('jetstream:install', ['stack' => 'livewire']);
-        $this->call('turbo:install', ['--option' => 'jet']);
+        $this->callSilently('livewire:publish');
+        $this->comment('Livewire scaffolding installed successfully');
+
+        $this->callSilently('jetstream:install', ['stack' => 'livewire']);
+        $this->callSilently('vendor:publish', ['--tag' => 'jetstream-views']);
+        $this->comment('Jetstream scaffolding installed successfully');
+
+        $this->callSilently('turbo:install', ['--jet' => true]);
+        $this->comment('Turbo Laravel scaffolding installed successfully.');
+
+        $this->callSilently('vendor:publish', ['--tag' => 'filament-config']);
+        $this->callSilently('vendor:publish', ['--tag' => 'filament-translations']);
+
+        $this->callSilently('forms:install');
+        $this->callSilently('vendor:publish', ['--tag' => 'forms-config']);
+        $this->callSilently('vendor:publish', ['--tag' => 'forms-translations']);
+
+        $this->callSilently('tables:install');
+        $this->callSilently('vendor:publish', ['--tag' => 'tables-config']);
+        $this->callSilently('vendor:publish', ['--tag' => 'tables-translations']);
+
+        $this->callSilently('vendor:publish', ['--tag' => 'filament-spatie-laravel-translatable-plugin-config']);
+        $this->callSilently('vendor:publish', ['--tag' => 'filament-spatie-laravel-translatable-plugin-translations']);
+
+        $this->callSilently('filament:upgrade');
+        $this->comment('Filament scaffolding installed successfully.');
+
+        $this->comment('Please execute the "npm install && npm run dev" command to build your assets.');
     }
 
     private function maybeGenerateAppKey(): void
